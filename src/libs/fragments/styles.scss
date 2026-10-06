@@ -1,0 +1,3 @@
+// Tokens de Fragments (colores, espacios, tipografía). El CSS precompilado de la v0.22 no los trae,
+// así que se compila su globals.scss, que es lo que recomienda su README para personalizar el tema.
+@use "../../../node_modules/@fragments-sdk/ui/src/styles/globals";

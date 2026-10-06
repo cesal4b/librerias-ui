@@ -1,0 +1,107 @@
+[
+  {
+    "name": "tailwind-togglebutton",
+    "css": {
+      "@plugin \"tailwindcss-react-aria-components\"": {},
+      "@import \"tw-animate-css\"": {}
+    }
+  },
+  {
+    "name": "https://react-aria.adobe.com/registry/tailwind-utils.json",
+    "css": {
+      "@plugin \"tailwindcss-react-aria-components\"": {},
+      "@import \"tw-animate-css\"": {}
+    }
+  },
+  {
+    "name": "tailwind-button",
+    "css": {
+      "@plugin \"tailwindcss-react-aria-components\"": {},
+      "@import \"tw-animate-css\"": {}
+    }
+  },
+  {
+    "name": "tailwind-link",
+    "css": {
+      "@plugin \"tailwindcss-react-aria-components\"": {},
+      "@import \"tw-animate-css\"": {}
+    }
+  },
+  {
+    "name": "tailwind-menu",
+    "css": {
+      "@plugin \"tailwindcss-react-aria-components\"": {},
+      "@import \"tw-animate-css\"": {}
+    }
+  },
+  {
+    "name": "https://react-aria.adobe.com/registry/tailwind-listbox.json",
+    "css": {
+      "@plugin \"tailwindcss-react-aria-components\"": {},
+      "@import \"tw-animate-css\"": {}
+    }
+  },
+  {
+    "name": "https://react-aria.adobe.com/registry/tailwind-popover.json",
+    "css": {
+      "@plugin \"tailwindcss-react-aria-components\"": {},
+      "@import \"tw-animate-css\"": {}
+    }
+  },
+  {
+    "name": "tailwind-tabs",
+    "css": {
+      "@plugin \"tailwindcss-react-aria-components\"": {},
+      "@import \"tw-animate-css\"": {}
+    }
+  },
+  {
+    "name": "tailwind-gridlist",
+    "css": {
+      "@plugin \"tailwindcss-react-aria-components\"": {},
+      "@import \"tw-animate-css\"": {}
+    }
+  },
+  {
+    "name": "https://react-aria.adobe.com/registry/tailwind-checkbox.json",
+    "css": {
+      "@plugin \"tailwindcss-react-aria-components\"": {},
+      "@import \"tw-animate-css\"": {}
+    }
+  },
+  {
+    "name": "https://react-aria.adobe.com/registry/tailwind-field.json",
+    "css": {
+      "@plugin \"tailwindcss-react-aria-components\"": {},
+      "@import \"tw-animate-css\"": {}
+    }
+  },
+  {
+    "name": "tailwind-textfield",
+    "css": {
+      "@plugin \"tailwindcss-react-aria-components\"": {},
+      "@import \"tw-animate-css\"": {}
+    }
+  },
+  {
+    "name": "tailwind-separator",
+    "css": {
+      "@plugin \"tailwindcss-react-aria-components\"": {},
+      "@import \"tw-animate-css\"": {}
+    }
+  },
+  {
+    "name": "tailwind-tooltip",
+    "css": {
+      "@plugin \"tailwindcss-react-aria-components\"": {},
+      "@import \"tw-animate-css\"": {}
+    }
+  },
+  {
+    "name": "tailwind-togglebuttongroup",
+    "css": {
+      "@plugin \"tailwindcss-react-aria-components\"": {},
+      "@import \"tw-animate-css\"": {}
+    }
+  }
+]

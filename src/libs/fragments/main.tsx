@@ -1,0 +1,6 @@
+import "@fragments-sdk/ui/styles";
+import "./styles.scss";
+import { createRoot } from "react-dom/client";
+import Page from "./Page";
+
+createRoot(document.getElementById("root")!).render(<Page />);

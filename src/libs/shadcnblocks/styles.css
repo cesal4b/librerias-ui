@@ -1,0 +1,10 @@
+@import "tailwindcss" source(none);
+@source "./";
+@import "../../shared/shadcn-theme.css";
+
+/* shadcnblocks asume este "container" (lo trae su plantilla de proyecto) */
+@utility container {
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+  max-width: 80rem;
+}

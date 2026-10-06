@@ -1,0 +1,8 @@
+@import "tailwindcss" source(none);
+@source "./";
+/* Las demos oficiales usan dark: según el sistema; aquí se fija claro para que la página sea coherente */
+@custom-variant dark (&:where(.dark, .dark *));
+body {
+  background: white;
+  color: var(--color-neutral-950);
+}

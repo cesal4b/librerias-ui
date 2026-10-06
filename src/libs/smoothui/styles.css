@@ -1,0 +1,4 @@
+@import "tailwindcss" source(none);
+@source "./";
+@import "../../shared/shadcn-theme.css";
+@import "./_registry.css";

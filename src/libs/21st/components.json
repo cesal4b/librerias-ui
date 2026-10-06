@@ -1,0 +1,176 @@
+{
+  "navbar": [
+    {
+      "title": "Navbar Section 2",
+      "description": "A dark navigation bar with an animated expanding mega-menu dropdown and a light hero section, inspired by the xAI marketing layout.",
+      "author": "solaceui",
+      "license": "MIT",
+      "deps": "motion, lucide-react",
+      "url": "https://21st.dev/@solaceui/components/navbar-section-2",
+      "bundle": "https://cdn.21st.dev/solaceui/navbar-section-2/default/bundle.1783485957214.html"
+    },
+    {
+      "title": "Navbar 5",
+      "description": "Shadcn Navbar with 2 column dropdown menus and mobile menu that slides in from the top with dropdowns",
+      "author": "Shadcnblocks.com",
+      "license": "unknown",
+      "deps": "lucide-react",
+      "url": "https://21st.dev/@shadcnblockscom/components/navbar-5",
+      "bundle": "https://cdn.21st.dev/shadcnblockscom/navbar-5/default/bundle.1748272550348.html"
+    },
+    {
+      "title": "Navbar",
+      "description": "Navigation, Header",
+      "author": "Ali Imam",
+      "license": "unknown",
+      "deps": "next, lucide-react",
+      "url": "https://21st.dev/@designali-in/components/navbar",
+      "bundle": "https://cdn.21st.dev/designali-in/navbar/default/bundle.1752510333026.html"
+    }
+  ],
+  "hero": [
+    {
+      "title": "Centered Hero with Image Fan",
+      "description": "A centered hero section with a highlighted serif headline, description, dual call-to-action buttons, social proof, and a fanned collage of three overlapping images.",
+      "author": "felipemenezes098",
+      "license": "MIT",
+      "deps": "motion, react-wrap-balancer",
+      "url": "https://21st.dev/@felipemenezes098/components/hero-10",
+      "bundle": "https://cdn.21st.dev/felipemenezes098/hero-10/default/bundle.1783679160216.html"
+    },
+    {
+      "title": "Hero Golden Spiral",
+      "description": "A marketing hero section with a golden spiral background, headline, call-to-action buttons, and a tech-stack logo row.",
+      "author": "Chánh Đại",
+      "license": "MIT",
+      "deps": "lucide-react",
+      "url": "https://21st.dev/@ncdai/components/hero-01",
+      "bundle": "https://cdn.21st.dev/ncdai/hero-01/default/bundle.1783679828361.html"
+    },
+    {
+      "title": "Responsive Hero Banner",
+      "description": "A stunning full-screen hero section featuring a cinematic background image, glassmorphic navigation bar with backdrop blur, animated badge, elegant serif typography, dual call-to-action buttons, and a partner logos grid. Fully responsive with smooth fadeSlideIn animations.",
+      "author": "Saifullah Channa",
+      "license": "unknown",
+      "deps": "",
+      "url": "https://21st.dev/@sensewood8/components/responsive-hero-banner",
+      "bundle": "https://cdn.21st.dev/sensewood8/responsive-hero-banner/default/bundle.1768644363827.html"
+    }
+  ],
+  "features": [
+    {
+      "title": "Feature Sections",
+      "description": "Here is Feature Sections component",
+      "author": "prebuiltui",
+      "license": "unknown",
+      "deps": "",
+      "url": "https://21st.dev/@prebuiltui/components/feature-sections/features-section-dark-theme",
+      "bundle": "https://cdn.21st.dev/larsen66/feature-sections/features-section-dark-theme/bundle.1757568317457.html"
+    },
+    {
+      "title": "Grid Feature Cards",
+      "description": "Minimal Features Section using Grid Feature Cards",
+      "author": "Efferd",
+      "license": "unknown",
+      "deps": "",
+      "url": "https://21st.dev/@efferd/components/grid-feature-cards",
+      "bundle": "https://cdn.21st.dev/sshahaider/grid-feature-cards/default/bundle.1747156095291.html"
+    },
+    {
+      "title": "Features Card",
+      "description": "A React component by Gujjeti Mokshith, published on 21st.",
+      "author": "Gujjeti Mokshith",
+      "license": "unknown",
+      "deps": "lucide-react",
+      "url": "https://21st.dev/@mokshithgujjeti/components/features-card",
+      "bundle": "https://cdn.21st.dev/mokshithcodez/features-card/default/bundle.1783275626286.html"
+    }
+  ],
+  "cards": [
+    {
+      "title": "Statistics Card 7",
+      "description": "Statistics Card is designed to present key metrics and insights featuring unique layouts, data visualizations, and styling options. Perfect for dashboards, admin panels, and analytics pages.",
+      "author": "Sean Hello",
+      "license": "mit",
+      "deps": "",
+      "url": "https://21st.dev/@sean0205/components/statistics-card-7",
+      "bundle": "https://cdn.21st.dev/sean0205/statistics-card-7/default/bundle.1753372970551.html"
+    },
+    {
+      "title": "Statistics Card 2",
+      "description": "Statistics Card is designed to present key metrics and insights featuring unique layouts, data visualizations, and styling options. Perfect for dashboards, admin panels, and analytics pages.",
+      "author": "Sean Hello",
+      "license": "mit",
+      "deps": "",
+      "url": "https://21st.dev/@sean0205/components/statistics-card-2",
+      "bundle": "https://cdn.21st.dev/sean0205/statistics-card-2/default/bundle.1753104706690.html"
+    },
+    {
+      "title": "Card",
+      "description": "Containers for displaying content and actions about a single subject.",
+      "author": "Sean Hello",
+      "license": "mit",
+      "deps": "class-variance-authority",
+      "url": "https://21st.dev/@sean0205/components/card",
+      "bundle": "https://cdn.21st.dev/sean0205/card/default/bundle.1752552298420.html"
+    }
+  ],
+  "gallery": [
+    {
+      "title": "Feature Carousel",
+      "description": "An animated feature carousel with smooth slide transitions.",
+      "author": "0xUrvish",
+      "license": "mit",
+      "deps": "motion, @hugeicons/react, @hugeicons/core-free-icons",
+      "url": "https://21st.dev/@0xUrvish/components/feature-carousel",
+      "bundle": "https://cdn.21st.dev/larsen66/feature-carousel/default/bundle.1773296834657.html"
+    },
+    {
+      "title": "Testimonial",
+      "description": "Here is Testimonial component",
+      "author": "prebuiltui",
+      "license": "unknown",
+      "deps": "",
+      "url": "https://21st.dev/@prebuiltui/components/testimonial/testimonial",
+      "bundle": "https://cdn.21st.dev/larsen66/testimonial/testimonial/bundle.1757777696461.html"
+    },
+    {
+      "title": "Card Fan Carousel",
+      "description": "Animated image card carousel with a fanned arc layout. Features elastic entrance animation, interactive hover spread, and circular single-card pagination powered by GSAP. Responsive, light/dark mode ready.",
+      "author": "AAYUSH duhan",
+      "license": "unknown",
+      "deps": "gsap",
+      "url": "https://21st.dev/@aayush-duhan/components/card-fan-carousel",
+      "bundle": "https://cdn.21st.dev/aayush-duhan/card-fan-carousel/default/bundle.1781785172428.html"
+    }
+  ],
+  "footer": [
+    {
+      "title": "Orbit Footer",
+      "description": "Compact dark footer with a brand name and inline developer links like docs and status.",
+      "author": "nexus-ui",
+      "license": "mit",
+      "deps": "",
+      "url": "https://21st.dev/@nexus-ui/components/orbit-footer",
+      "bundle": "https://cdn.21st.dev/nexus-ui/orbit-footer/default/bundle.1783728529715.html"
+    },
+    {
+      "title": "Footer column",
+      "description": "Here is Footer component",
+      "author": "mvp_Subha",
+      "license": "unknown",
+      "deps": "next, lucide-react",
+      "url": "https://21st.dev/@mvp_Subha/components/footer-column/footer-with-newsletter",
+      "bundle": "https://cdn.21st.dev/larsen66/footer-column/footer-with-newsletter/bundle.1753389294747.html"
+    },
+    {
+      "title": "Footer 7",
+      "description": "A modern footer with menu links, logo, social, copyright and legal",
+      "author": "Shadcnblocks.com",
+      "license": "unknown",
+      "deps": "react-icons",
+      "url": "https://21st.dev/@shadcnblockscom/components/footer-7",
+      "bundle": "https://cdn.21st.dev/shadcnblockscom/footer-7/default/bundle.1747730843256.html"
+    }
+  ]
+}

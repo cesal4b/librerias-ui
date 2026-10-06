@@ -1,0 +1,34 @@
+[
+  {
+    "name": "announcement",
+    "css": {}
+  },
+  {
+    "name": "marquee",
+    "css": {}
+  },
+  {
+    "name": "image-zoom",
+    "css": {}
+  },
+  {
+    "name": "reel",
+    "css": {}
+  },
+  {
+    "name": "pill",
+    "css": {}
+  },
+  {
+    "name": "avatar-stack",
+    "css": {}
+  },
+  {
+    "name": "banner",
+    "css": {}
+  },
+  {
+    "name": "deck",
+    "css": {}
+  }
+]

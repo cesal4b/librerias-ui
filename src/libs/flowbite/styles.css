@@ -1,0 +1,7 @@
+@import "tailwindcss" source(none);
+@source "./";
+/* flowbite-react guarda sus clases en el paquete: Tailwind tiene que escanearlo */
+@source "../../../node_modules/flowbite-react/dist";
+@plugin "flowbite-react/plugin/tailwindcss";
+/* Modo oscuro solo con la clase .dark (por defecto Flowbite sigue al sistema y mezclaría claro/oscuro en esta demo) */
+@custom-variant dark (&:where(.dark, .dark *));

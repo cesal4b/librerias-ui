@@ -1,0 +1,6 @@
+@import "tailwindcss" source(none);
+@source "./";
+/* Tema fijo "light" (por defecto daisyUI cambia a "dark" según el sistema). El selector de temas de la página usa data-theme. */
+@plugin "daisyui" {
+  themes: light --default, dark, cupcake, synthwave, retro, cyberpunk, valentine, garden, lofi, pastel, luxury, dracula, nord, sunset, caramellatte, abyss, silk;
+}
