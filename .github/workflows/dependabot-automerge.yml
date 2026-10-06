@@ -1,0 +1,41 @@
+# Prueba cada propuesta de Dependabot y, si todo carga bien, la integra y publica sola.
+# Si algo falla, el PR queda abierto con un comentario para revisión manual.
+name: Probar y publicar actualizaciones
+on: pull_request
+
+permissions:
+  contents: write
+  pull-requests: write
+  actions: write
+
+jobs:
+  probar:
+    if: github.actor == 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Prueba de humo (galería + 22 páginas)
+        run: |
+          npm i --no-save puppeteer
+          npm run test:smoke
+      - name: Integrar y publicar
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+        run: |
+          gh pr merge --squash --delete-branch "$PR_URL"
+          # Un merge hecho con GITHUB_TOKEN no dispara otros workflows: se lanza la publicación explícitamente
+          gh workflow run deploy.yml --ref main
+      - name: Avisar si falló
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+        run: |
+          gh pr comment "$PR_URL" --body "⚠️ Esta actualización no pasó la prueba automática (compilación o carga de las 22 páginas). Queda abierta para revisión manual: ver el detalle en la pestaña Checks."

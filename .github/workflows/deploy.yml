@@ -1,4 +1,4 @@
-# Compila la galería y la publica en GitHub Pages en cada push a main
+# Compila la galería, la prueba y la publica en GitHub Pages en cada push a main (o cuando la lanza el auto-merge de Dependabot)
 name: Publicar galería
 on:
   push:
@@ -25,6 +25,10 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
+      - name: Prueba de humo (galería + 22 páginas)
+        run: |
+          npm i --no-save puppeteer
+          npm run test:smoke
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

@@ -1,0 +1,29 @@
+# Revisa cada semana si hay versiones nuevas de las librerías (npm) y propone la actualización.
+# Las versiones menores y parches van agrupados en un solo PR; las mayores van una por una.
+# Cada PR pasa por .github/workflows/dependabot-automerge.yml: si compila y las 22 páginas cargan sin errores, se publica sola.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "07:00"
+      timezone: America/Bogota
+    open-pull-requests-limit: 10
+    commit-message:
+      prefix: "deps"
+    labels: ["dependencias"]
+    groups:
+      menores-y-parches:
+        update-types: ["minor", "patch"]
+    ignore:
+      # AlignUI necesita la API 0.2 de tailwind-variants (se instala con el alias tailwind-variants-02)
+      - dependency-name: "tailwind-variants-02"
+      # Fragments UI 0.22 necesita la v8 de la tabla (la v9 cambió la API)
+      - dependency-name: "@tanstack/react-table"
+        update-types: ["version-update:semver-major"]
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
