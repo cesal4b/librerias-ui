@@ -44,7 +44,9 @@ async function check(url, { expectSections }) {
     if (r.status() >= 400 && r.url().startsWith(base)) errors.push(`${r.status()} ${r.url().replace(base, "")}`);
   });
   try {
-    await page.goto(url, { waitUntil: "networkidle2", timeout: 60000 });
+    // "load" en vez de "networkidle2": Magic UI nunca llega a red inactiva en los runners de GitHub
+    // (sus fondos animados siguen pidiendo recursos). Las validaciones de abajo igual detectan errores reales.
+    await page.goto(url, { waitUntil: "load", timeout: 60000 });
     await new Promise((r) => setTimeout(r, 1500));
     if (expectSections) {
       const n = await page.evaluate(() => document.querySelectorAll("[data-section]").length);
