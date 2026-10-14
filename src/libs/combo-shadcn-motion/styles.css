@@ -1,0 +1,6 @@
+@import "tailwindcss" source(none);
+@source "./";
+/* Este combo reutiliza los componentes reales de shadcn/ui (src/libs/shadcn/ui):
+   hay que escanear también esa carpeta para que Tailwind genere sus clases. */
+@source "../shadcn/ui";
+@import "../../shared/shadcn-theme.css";

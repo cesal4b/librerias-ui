@@ -1,8 +1,10 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Check, ChevronDown, Columns2, Copy, ExternalLink, HelpCircle, LayoutGrid, Monitor, Search, Smartphone, Sparkles, Tablet, X } from "lucide-react";
+import { Blocks, Check, ChevronDown, Columns2, Copy, ExternalLink, HelpCircle, LayoutGrid, Monitor, Search, Smartphone, Sparkles, Tablet, Wand2, X } from "lucide-react";
 import { libraries, SECTIONS, type Library, type Look, type Vibe } from "./libraries";
 import { buildInstruction } from "./vibe";
 import { responsive, type Responsive } from "./responsive";
+import { artifactCompat, type ArtifactLevel } from "./artifacts";
+import { combos, type Combo } from "./combos";
 
 // Navegación por hash: #/lib/<id>  ·  #/comparar/<seccion>  ·  #/lado/<idA>/<idB>/<seccion|todo>
 function useRoute() {
@@ -91,6 +93,25 @@ const respStyle: Record<Responsive, string> = {
   Variable: "bg-zinc-100 text-zinc-700 ring-zinc-500/20",
 };
 
+const artifactStyle: Record<ArtifactLevel, string> = {
+  Sí: "bg-teal-50 text-teal-800 ring-teal-600/20",
+  Parcial: "bg-orange-50 text-orange-800 ring-orange-600/20",
+  No: "bg-rose-50 text-rose-800 ring-rose-600/20",
+};
+
+/** Etiqueta de compatibilidad con Claude Artifacts (HTML aislado, sin npm) */
+function ArtifactsTag({ lib, short }: { lib: Library; short?: boolean }) {
+  const a = artifactCompat[lib.id];
+  if (!a) return null;
+  return (
+    <Tag className={artifactStyle[a.level]} title={`Claude Artifacts: ${a.level}. ${a.why}`}>
+      <Blocks className="size-3" />
+      {short ? "" : "Artifacts: "}
+      {a.level}
+    </Tag>
+  );
+}
+
 /** Etiqueta de comportamiento responsivo (ícono de celular + nivel) */
 function RespTag({ lib, short }: { lib: Library; short?: boolean }) {
   const r = responsive[lib.id];
@@ -171,6 +192,7 @@ function LibraryView({ lib, device, setDevice }: { lib: Library; device: Device;
           Look: {lib.look}
         </Tag>
         <RespTag lib={lib} />
+        <ArtifactsTag lib={lib} />
         <Tag className="bg-white/10 text-white ring-white/20">{lib.kind}</Tag>
         <Tag className="bg-white/10 text-white ring-white/20">{lib.price}</Tag>
         <div className="ml-auto flex items-center gap-1">
@@ -213,6 +235,9 @@ function LibraryView({ lib, device, setDevice }: { lib: Library; device: Device;
             </p>
             <p>
               <span className="font-semibold text-[#041f3e]">Responsivo ({responsive[lib.id]?.level}):</span> {responsive[lib.id]?.why}
+            </p>
+            <p>
+              <span className="font-semibold text-[#041f3e]">Claude Artifacts ({artifactCompat[lib.id]?.level}):</span> {artifactCompat[lib.id]?.why}
             </p>
             <p className="rounded-lg bg-white/70 p-2.5 text-[13px] text-zinc-600">
               <span className="font-semibold text-zinc-900">En esta demo:</span> {lib.demo}
@@ -343,6 +368,7 @@ function SideBySideView({ a, b, section, device, setDevice }: { a: Library; b: L
               <VibeTag lib={lib} short />
               <Tag className={lookStyle[lib.look]}>{lib.look}</Tag>
               <RespTag lib={lib} short />
+              <ArtifactsTag lib={lib} short />
             </div>
             <div className="min-h-0 flex-1">
               <ScaledFrame key={lib.id + section + device} src={`pages/${lib.id}.html${q}`} title={lib.name} width={DEVICES[device].width} />
@@ -384,6 +410,7 @@ function CompareView({ section, list, device, setDevice }: { section: string; li
               <VibeTag lib={lib} short />
               <Tag className={lookStyle[lib.look]}>{lib.look}</Tag>
               <RespTag lib={lib} short />
+              <ArtifactsTag lib={lib} short />
             </div>
             <div className="relative overflow-hidden" style={{ height: frameH }}>
               <ScaledFrame lazy key={lib.id + section + device} src={`pages/${lib.id}.html?only=${section}&labels=0`} title={`${lib.name} · ${section}`} width={DEVICES[device].width} />
@@ -392,6 +419,58 @@ function CompareView({ section, list, device, setDevice }: { section: string; li
           </div>
         ))}
       </div>
+    </div>
+  );
+}
+
+function ComboView({ combo, device, setDevice }: { combo: Combo; device: Device; setDevice: (d: Device) => void }) {
+  const [open, toggle] = useFichaOpen();
+  const framework = libraries.find((l) => l.id === combo.framework);
+  return (
+    <div className="flex h-full flex-col">
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-2 bg-[#041f3e] px-5 py-2.5 text-white">
+        <h2 className="text-lg font-semibold tracking-tight">{combo.name}</h2>
+        <Tag className="bg-white/10 text-white ring-white/20">Framework: {framework?.name ?? combo.framework}</Tag>
+        <Tag className="bg-white/10 text-white ring-white/20">Animación: {combo.interaction.name}</Tag>
+        <Tag className="bg-white/10 text-white ring-white/20">{combo.interaction.price}</Tag>
+        <div className="ml-auto flex items-center gap-1">
+          <DevicePicker device={device} onChange={setDevice} />
+          <a href={`pages/${combo.id}.html`} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 rounded-md px-2 py-1 text-sm text-white/80 hover:bg-white/10 hover:text-white">
+            Abrir demo <ExternalLink className="size-3.5" />
+          </a>
+          <button
+            onClick={toggle}
+            aria-expanded={open}
+            className="ml-1 inline-flex items-center gap-1.5 rounded-md bg-[#305fff] px-3 py-1.5 text-sm font-medium text-white hover:bg-[#232be6]"
+          >
+            {open ? "Ocultar ficha" : "Ver ficha e instrucción"}
+            <ChevronDown className={`size-4 transition ${open ? "rotate-180" : ""}`} />
+          </button>
+        </div>
+      </div>
+      {open && (
+        <div className="grid max-h-[55vh] gap-5 overflow-y-auto border-b border-[#c9d6fb] bg-[#eef3ff] px-5 py-4 lg:grid-cols-[1fr_1.15fr]">
+          <div className="space-y-3 text-sm text-zinc-700">
+            <p>
+              <span className="font-semibold text-[#041f3e]">Qué es:</span> {combo.description}
+            </p>
+            <p>
+              <span className="font-semibold text-[#041f3e]">Por qué este combo:</span> {combo.why}
+            </p>
+          </div>
+          <div className="space-y-3">
+            <CopyBox tall label="Prompt sugerido para la IA" text={combo.prompt} />
+            <CopyBox label="Instalación" text={combo.install} />
+          </div>
+        </div>
+      )}
+      {device === "escritorio" ? (
+        <iframe key={combo.id} src={`pages/${combo.id}.html`} title={`Demo de ${combo.name}`} className="w-full flex-1 bg-white" />
+      ) : (
+        <div className="min-h-0 flex-1">
+          <ScaledFrame key={combo.id + device} src={`pages/${combo.id}.html`} title={`Demo de ${combo.name}`} width={DEVICES[device].width} />
+        </div>
+      )}
     </div>
   );
 }
@@ -407,7 +486,10 @@ function Help({ onClose }: { onClose: () => void }) {
           </button>
         </div>
         <h3 className="mt-5 font-semibold text-zinc-950">Compatibilidad con vibe coding</h3>
-        <p className="mt-1">Qué tan fácil es que una herramienta de IA (Lovable, v0, Cursor, Claude Code) use bien la librería:</p>
+        <p className="mt-1">
+          Qué tan fácil es que una herramienta de IA con proyecto completo (Lovable, v0, ChatGPT generando código para desplegar, Cursor, Claude Code) use bien la librería. Las cuatro corren el mismo tipo de
+          entorno (un proyecto con <code>npm</code> de verdad), así que comparten esta sola calificación: no hay forma de verificar diferencias reales entre ellas librería por librería.
+        </p>
         <ul className="mt-2 list-disc space-y-1 pl-5">
           <li>
             <b>Alta:</b> se instala con un comando, la IA la conoce bien y tiene recursos para agentes (MCP, llms.txt o registro shadcn).
@@ -420,6 +502,23 @@ function Help({ onClose }: { onClose: () => void }) {
           </li>
         </ul>
         <p className="mt-2 text-zinc-500">Las señales (CLI, MCP, llms.txt, registro shadcn) se verificaron el 2026-10-06. La calificación es criterio del laboratorio.</p>
+        <h3 className="mt-5 font-semibold text-zinc-950">Claude Artifacts</h3>
+        <p className="mt-1">
+          Claude Artifacts sí es un entorno técnicamente distinto: una sola página HTML, sin <code>npm install</code> ni paso de build, solo código traído de unos pocos CDN permitidos. Por eso tiene su propia
+          calificación, en vez de compartir la de vibe coding:
+        </p>
+        <ul className="mt-2 list-disc space-y-1 pl-5">
+          <li>
+            <b>Sí:</b> tiene una ruta real de CDN (CSS o JS) pensada para usarse sin build.
+          </li>
+          <li>
+            <b>Parcial:</b> no hay paquete para CDN, pero se puede recrear el look a mano (Tailwind suelto, componentes propios).
+          </li>
+          <li>
+            <b>No:</b> exige un paso de build (SCSS, CSS Modules, un bundle que ya no se publica) que un Artifact no puede correr.
+          </li>
+        </ul>
+        <p className="mt-2 text-zinc-500">Verificado el 2026-10-14 contra la documentación y el stack de cada librería. También es criterio del laboratorio, no un dato oficial.</p>
         <h3 className="mt-5 font-semibold text-zinc-950">Look</h3>
         <p className="mt-1">
           Qué tanto se parece al sitio "vibecodeado" típico. <b>Muy visto</b> = la estética por defecto de shadcn, Magic UI o plantillas Tailwind, que hay que personalizar sí o sí. <b>Distintivo</b> = poco común
@@ -442,6 +541,11 @@ function Help({ onClose }: { onClose: () => void }) {
           </li>
         </ul>
         <p className="mt-2 text-zinc-500">Pruébalo tú mismo con el selector Escritorio / Tablet / Móvil.</p>
+        <h3 className="mt-5 font-semibold text-zinc-950">Combos</h3>
+        <p className="mt-1">
+          Un combo es un Framework UI + una librería de interacciones/transiciones, ya armados sobre el hero, las features, las cards y la galería (igual que cualquier librería, en una mini página de
+          aterrizaje completa). Trae su propia ficha con el prompt listo para pedirlo. Empezó con uno solo (shadcn/ui + Motion) para validar el formato antes de sumar más.
+        </p>
         <h3 className="mt-5 font-semibold text-zinc-950">Etiqueta de cada sección en las demos</h3>
         <ul className="mt-2 space-y-1">
           <li>
@@ -471,6 +575,7 @@ export default function App() {
   const [vibe, setVibe] = useState<Vibe | "Todas">("Todas");
   const [look, setLook] = useState<Look | "Todos">("Todos");
   const [resp, setResp] = useState<Responsive | "Todos">("Todos");
+  const [artifacts, setArtifacts] = useState<ArtifactLevel | "Todos">("Todos");
   const [help, setHelp] = useState(false);
   const [device, setDevice] = useDevice();
 
@@ -481,14 +586,16 @@ export default function App() {
           (vibe === "Todas" || l.vibe === vibe) &&
           (look === "Todos" || l.look === look) &&
           (resp === "Todos" || responsive[l.id]?.level === resp) &&
+          (artifacts === "Todos" || artifactCompat[l.id]?.level === artifacts) &&
           (q === "" || (l.name + l.stack + l.kind).toLowerCase().includes(q.toLowerCase())),
       ),
-    [q, vibe, look, resp],
+    [q, vibe, look, resp, artifacts],
   );
 
-  const mode = route[0] === "comparar" ? "compare" : route[0] === "lado" ? "side" : "lib";
+  const mode = route[0] === "comparar" ? "compare" : route[0] === "lado" ? "side" : route[0] === "combo" ? "combo" : "lib";
   const byId = (id?: string) => libraries.find((l) => l.id === id);
   const current = (mode === "side" ? byId(route[1]) : byId(route[1])) ?? libraries[0];
+  const currentCombo = combos.find((c) => c.id === route[1]) ?? combos[0];
   const section = SECTIONS.some((s) => s.id === route[1]) ? route[1] : "hero";
   // Lado a lado: A = librería actual, B = shadcn/ui (el look "vibecodeado" de referencia) si no se eligió otra
   const sideA = byId(route[1]) ?? libraries[0];
@@ -505,8 +612,10 @@ export default function App() {
               <HelpCircle className="size-3.5" /> Cómo leer
             </button>
           </div>
-          <p className="mt-0.5 text-xs text-zinc-500">22 librerías · Laboratorio de Innovación</p>
-          <div className="mt-3 grid grid-cols-[auto_auto_auto] rounded-lg bg-[#dfe8ff] p-0.5 text-xs whitespace-nowrap">
+          <p className="mt-0.5 text-xs text-zinc-500">
+            {mode === "combo" ? `${combos.length} combo${combos.length === 1 ? "" : "s"}` : "22 librerías"} · Laboratorio de Innovación
+          </p>
+          <div className="mt-3 grid grid-cols-2 gap-0.5 rounded-lg bg-[#dfe8ff] p-0.5 text-xs whitespace-nowrap">
             <a href={`#/lib/${current.id}`} className={`rounded-md px-2 py-1.5 text-center ${mode === "lib" ? "bg-white font-medium text-[#041f3e] shadow-sm" : "text-[#013998]"}`}>
               Explorar
             </a>
@@ -516,11 +625,15 @@ export default function App() {
             <a href={`#/lado/${sideA.id}/${sideB.id}/${sideSection}`} className={`inline-flex items-center justify-center gap-1 rounded-md px-2 py-1.5 ${mode === "side" ? "bg-white font-medium text-[#041f3e] shadow-sm" : "text-[#013998]"}`}>
               <Columns2 className="size-3.5" /> Lado a lado
             </a>
+            <a href={`#/combo/${currentCombo.id}`} className={`inline-flex items-center justify-center gap-1 rounded-md px-2 py-1.5 ${mode === "combo" ? "bg-white font-medium text-[#041f3e] shadow-sm" : "text-[#013998]"}`}>
+              <Wand2 className="size-3.5" /> Combos
+            </a>
           </div>
           <label className="mt-3 flex items-center gap-2 rounded-lg border border-[#c9d6fb] bg-white px-2.5 py-1.5 text-sm focus-within:border-[#305fff]">
             <Search className="size-4 text-zinc-400" />
             <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Buscar" className="w-full bg-transparent outline-none" />
           </label>
+          {mode !== "combo" && (
           <div className="mt-3 space-y-2 text-xs">
             <div className="flex flex-wrap items-center gap-1">
               <span className="w-[4.5rem] text-zinc-500">Vibe coding</span>
@@ -546,10 +659,33 @@ export default function App() {
                 </button>
               ))}
             </div>
+            <div className="flex flex-wrap items-center gap-1">
+              <span className="w-[4.5rem] text-zinc-500">Artifacts</span>
+              {(["Todos", "Sí", "Parcial", "No"] as const).map((v) => (
+                <button key={v} onClick={() => setArtifacts(v)} className={`rounded-full px-2 py-0.5 ${artifacts === v ? "bg-[#013998] text-white" : "bg-white text-zinc-700 ring-1 ring-[#c9d6fb] hover:bg-[#e8eeff]"}`}>
+                  {v}
+                </button>
+              ))}
+            </div>
           </div>
+          )}
         </div>
         <nav className="mt-3 flex-1 overflow-y-auto border-t border-[#c9d6fb] px-2 py-2">
-          {filtered.map((l) => (
+          {mode === "combo" ? (
+            combos.map((c) => (
+              <a
+                key={c.id}
+                href={`#/combo/${c.id}`}
+                className={`flex items-center justify-between gap-2 rounded-lg px-2.5 py-2 text-sm ${c.id === currentCombo.id ? "bg-[#dfe8ff] font-medium text-[#041f3e]" : "hover:bg-[#e8eeff]"}`}
+              >
+                <span className="min-w-0">
+                  <span className="block truncate">{c.name}</span>
+                  <span className="block truncate text-xs font-normal text-zinc-500">{c.interaction.name}</span>
+                </span>
+              </a>
+            ))
+          ) : (
+          filtered.map((l) => (
             <a
               key={l.id}
               // En "lado a lado", elegir en la lista cambia la librería de la derecha
@@ -567,10 +703,12 @@ export default function App() {
               <span className="flex shrink-0 flex-col items-end gap-1">
                 <VibeTag lib={l} short />
                 <RespTag lib={l} short />
+                <ArtifactsTag lib={l} short />
               </span>
             </a>
-          ))}
-          {filtered.length === 0 && <p className="px-2.5 py-4 text-sm text-zinc-500">Ninguna librería coincide con los filtros.</p>}
+          ))
+          )}
+          {mode !== "combo" && filtered.length === 0 && <p className="px-2.5 py-4 text-sm text-zinc-500">Ninguna librería coincide con los filtros.</p>}
         </nav>
       </aside>
       <main className="min-w-0 flex-1">
@@ -578,6 +716,8 @@ export default function App() {
           <CompareView section={section} list={filtered} device={device} setDevice={setDevice} />
         ) : mode === "side" ? (
           <SideBySideView a={sideA} b={sideB} section={sideSection} device={device} setDevice={setDevice} />
+        ) : mode === "combo" ? (
+          <ComboView combo={currentCombo} device={device} setDevice={setDevice} />
         ) : (
           <LibraryView lib={current} device={device} setDevice={setDevice} />
         )}
