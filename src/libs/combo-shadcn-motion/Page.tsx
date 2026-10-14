@@ -169,7 +169,7 @@ export default function Page() {
         {
           id: "navbar",
           source: "compuesto",
-          note: "NavigationMenu + Button (igual que shadcn/ui, sin animar)",
+          note: "NavigationMenu + Button (shadcn/ui, sin animar)",
           render: () => (
             <header className="border-b">
               <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
@@ -234,31 +234,31 @@ export default function Page() {
         {
           id: "hero",
           source: "compuesto",
-          note: "Badge + Button + motion (stagger fade-in, parallax de fondo al hacer scroll)",
+          note: "Badge + Button (shadcn/ui) + motion (stagger fade-in, parallax de fondo al hacer scroll)",
           render: () => <HeroCombo />,
         },
         {
           id: "features",
           source: "compuesto",
-          note: "Card + motion (whileInView con stagger al entrar en pantalla)",
+          note: "Card (shadcn/ui) + motion (whileInView con stagger al entrar en pantalla)",
           render: () => <FeaturesCombo />,
         },
         {
           id: "cards",
           source: "compuesto",
-          note: "Card + motion (hover-lift y animación de layout al reordenar)",
+          note: "Card (shadcn/ui) + motion (hover-lift y animación de layout al reordenar)",
           render: () => <CardsCombo />,
         },
         {
           id: "gallery",
           source: "compuesto",
-          note: "Carousel (Embla) + motion (fundido/escala según el slide activo)",
+          note: "Carousel (shadcn/ui + Embla) + motion (fundido/escala según el slide activo)",
           render: () => <GalleryCombo />,
         },
         {
           id: "footer",
           source: "compuesto",
-          note: "Separator + Input + Button (igual que shadcn/ui, sin animar)",
+          note: "Separator + Input + Button (shadcn/ui, sin animar)",
           render: () => (
             <footer className="bg-muted/40 border-t">
               <div className="mx-auto grid max-w-6xl gap-10 px-6 py-12 md:grid-cols-4">

@@ -430,7 +430,7 @@ function ComboView({ combo, device, setDevice }: { combo: Combo; device: Device;
     <div className="flex h-full flex-col">
       <div className="flex flex-wrap items-center gap-x-3 gap-y-2 bg-[#041f3e] px-5 py-2.5 text-white">
         <h2 className="text-lg font-semibold tracking-tight">{combo.name}</h2>
-        <Tag className="bg-white/10 text-white ring-white/20">Framework: {framework?.name ?? combo.framework}</Tag>
+        <Tag className="bg-white/10 text-white ring-white/20">Framework: {combo.framework === "remix" ? "varía por sección (ver franjas)" : (framework?.name ?? combo.framework)}</Tag>
         <Tag className="bg-white/10 text-white ring-white/20">Animación: {combo.interaction.name}</Tag>
         <Tag className="bg-white/10 text-white ring-white/20">{combo.interaction.price}</Tag>
         <div className="ml-auto flex items-center gap-1">

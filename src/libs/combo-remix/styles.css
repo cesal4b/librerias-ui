@@ -1,0 +1,17 @@
+/* Este combo mezcla componentes reales de 4 librerías de la familia shadcn (comparten shadcn-theme.css,
+   por eso se pueden combinar en una sola página sin que sus estilos globales choquen): hay que escanear
+   también sus carpetas para que Tailwind genere las clases que usan. */
+@import "tailwindcss" source(none);
+@source "./";
+@source "../shadcnblocks";
+@source "../smoothui";
+@source "../kibo";
+@source "../magicui";
+@import "../../shared/shadcn-theme.css";
+
+/* El bloque "header-1" de Smooth UI trae su propia barra de navegación interna (absoluta, no ocupa
+   espacio en el flujo). En este combo ya hay una barra compartida arriba que no se mezcla, así que se
+   oculta la de Smooth UI para no duplicarla cuando el hero elegido al azar sea el suyo. */
+[data-section="hero"] header {
+  display: none;
+}

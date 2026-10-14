@@ -6,7 +6,8 @@ import type { Price } from "./libraries";
 export type Combo = {
   id: string; // = pages/<id>.html
   name: string;
-  framework: string; // id de Library base (./libraries.ts)
+  /** id de Library base (./libraries.ts), o "remix" si mezcla varias al azar (ver ComboView en App.tsx) */
+  framework: string;
   interaction: { name: string; url: string; price: Price };
   description: string;
   /** Qué lo hace atractivo y cuándo conviene */
@@ -27,5 +28,29 @@ export const combos: Combo[] = [
     install: "npx shadcn@latest init  →  npm i motion",
     prompt:
       "Usa shadcn/ui tal como lo instalarías normalmente, pero envuelve el hero, las features, las cards y la galería con Motion (`import { motion } from \"motion/react\"`): stagger fade-in en el hero, whileInView con stagger en las features, whileHover + layout en las cards, y una transición de opacidad/escala en el carrusel según el slide activo. No animes la barra de navegación ni el footer.",
+  },
+  {
+    id: "combo-tailark-gsap",
+    name: "Tailark (kit Veil) + GSAP",
+    framework: "tailark",
+    interaction: { name: "GSAP (ScrollTrigger + SplitText)", url: "https://gsap.com", price: "Gratis" },
+    description:
+      "El kit Veil de Tailark (serif cálida, tonos crema) con GSAP: el hero revela el título letra por letra al cargar (SplitText) con una entrada en timeline; features y testimonios aparecen con ScrollTrigger (los testimonios se enfocan progresivamente con scrub, ligados al scroll); el logo cloud entra en abanico y reacciona al pasar el mouse.",
+    why: "Tailark ya es de los look más distintivos de la galería (poco visto en sitios hechos con IA); GSAP le suma el tipo de movimiento cinematográfico que normalmente solo se ve en sitios hechos a mano, no en los genéricos de IA.",
+    install: "Copiar el kit Veil de github.com/tailark/blocks (gratis)  →  npm i gsap",
+    prompt:
+      "Usa los bloques del kit Veil de Tailark como base. Para el movimiento, usa GSAP (`gsap`, con `gsap/ScrollTrigger` y `gsap/SplitText`, ambos gratis desde la licencia actual de GSAP): el título del hero se revela letra por letra al cargar, features y testimonios aparecen con ScrollTrigger al hacer scroll (los testimonios con scrub, para que se enfoquen progresivamente), y el logo cloud entra en abanico. No mezcles con otro kit de Tailark ni con otra librería de animación.",
+  },
+  {
+    id: "combo-remix",
+    name: "Remix aleatorio (familia shadcn)",
+    framework: "remix",
+    interaction: { name: "Motion (fundido al mezclar)", url: "https://motion.dev", price: "Gratis" },
+    description:
+      "Mezcla, al azar por sección, componentes oficiales de 4 librerías que comparten el mismo tema (ShadcnBlocks, Smooth UI, Kibo UI y Magic UI): hero y features eligen entre 2 librerías, cards y galería entre otras 2 (16 combinaciones posibles). El botón «Mezclar» vuelve a tirar los dados con un fundido suave. La barra de navegación y el footer no se mezclan, para que el marco se mantenga estable.",
+    why: "Responde directo a la duda de cómo saber de qué librería sale cada pieza: cada sección trae su propia etiqueta con el nombre de la librería elegida. Como las 4 comparten el mismo tema de colores (shadcn-theme.css), se pueden combinar sin que los estilos choquen entre sí, cosa que no es segura con cualquier librería de la galería (ver DOCUMENTACION §10).",
+    install: "Cada librería se instala por separado con el CLI de shadcn (@shadcnblocks, @kibo-ui, @magicui) o copiando su bloque (Smooth UI)",
+    prompt:
+      "Arma la landing combinando bloques de ShadcnBlocks, Smooth UI, Kibo UI y Magic UI (todas sobre el mismo tema shadcn, para que no choquen los colores): elige un hero, un bloque de features, uno de cards y uno de galería, cada uno de una librería distinta si quieres variedad, o de la misma si prefieres consistencia. No mezcles con librerías que traigan su propio reset de CSS (Mantine, MUI, daisyUI, HeroUI, Flowbite): esas sí pueden chocar con las demás.",
   },
 ];
