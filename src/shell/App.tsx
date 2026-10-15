@@ -613,7 +613,7 @@ export default function App() {
             </button>
           </div>
           <p className="mt-0.5 text-xs text-zinc-500">
-            {mode === "combo" ? `${combos.length} combo${combos.length === 1 ? "" : "s"}` : "22 librerías"} · Laboratorio de Innovación
+            {mode === "combo" ? `${combos.length} combo${combos.length === 1 ? "" : "s"}` : `${libraries.length} librerías`} · Laboratorio de Innovación
           </p>
           <div className="mt-3 grid grid-cols-2 gap-0.5 rounded-lg bg-[#dfe8ff] p-0.5 text-xs whitespace-nowrap">
             <a href={`#/lib/${current.id}`} className={`rounded-md px-2 py-1.5 text-center ${mode === "lib" ? "bg-white font-medium text-[#041f3e] shadow-sm" : "text-[#013998]"}`}>

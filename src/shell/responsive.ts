@@ -30,4 +30,6 @@ export const responsive: Record<string, { level: Responsive; why: string }> = {
   "21st": { level: "Variable", why: "Depende de cada autor: revisa cada componente en vista Móvil antes de usarlo." },
   daisyui: { level: "Parcial", why: "Trae las piezas: hamburguesa con dropdown, carrusel táctil con scroll-snap y un footer que se apila. Pero el navbar responsivo lo armas tú siguiendo su patrón." },
   tailkits: { level: "Parcial", why: "El HTML es responsivo, pero no trae JavaScript: el botón del menú móvil no hace nada hasta que lo programes." },
+  launchui: { level: "Completo", why: "El navbar colapsa con un Sheet (panel lateral) propio, los títulos y grillas (features, footer) ya traen clases responsivas de Tailwind." },
+  shadcnstudio: { level: "Variable", why: "No se pudo verificar en vivo: su licencia (Commons Clause) prohíbe copiar sus bloques reales para probarlos aquí. Depende de cada componente/tema." },
 };

@@ -1,0 +1,14 @@
+/* Shadcn Studio es de licencia Commons Clause (prohíbe redistribuir sus componentes): no se copia su
+   código real. Esta página es una REFERENCIA armada con shadcn/ui (gratis, MIT), que es la base técnica
+   que Shadcn Studio extiende, para mostrar el estilo aproximado. */
+@import "tailwindcss" source(none);
+@source "./";
+@source "../shadcn/ui";
+@import "../../shared/shadcn-theme.css";
+
+/* Acento violeta, solo para que esta referencia no se vea idéntica a la ficha de shadcn/ui. */
+:root {
+  --primary: oklch(0.556 0.228 297.5);
+  --primary-foreground: oklch(0.98 0 0);
+  --ring: oklch(0.556 0.228 297.5);
+}

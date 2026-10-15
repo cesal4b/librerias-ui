@@ -91,6 +91,14 @@ const extras: Record<string, { docs: string[]; antiGeneric: string }> = {
     docs: ["Componentes gratuitos (HTML): github.com/tailkits/tailkits-ui", "Tiene integración MCP: ver https://tailkits.com/ui"],
     antiGeneric: "Convierte el HTML a componentes y cambia los degradados de fondo por los colores de marca.",
   },
+  launchui: {
+    docs: ["No tiene llms.txt ni MCP: pásale a la IA los archivos de components/ que vayas a usar.", "Repo completo (MIT): github.com/launch-ui/launch-ui"],
+    antiGeneric: "Cambia el color --brand (naranja por defecto); los degradados y el botón «glow» ya le dan personalidad, pero el naranja es reconocible si no lo tocas.",
+  },
+  shadcnstudio: {
+    docs: ["MCP: npm i shadcn-studio-mcp (sin actualizar desde enero de 2026, verifica que siga funcionando)", "Licencia: shadcnstudio.com/license — Commons Clause, no redistribuir componentes"],
+    antiGeneric: "Si no tienes licencia Pro, pide el look con shadcn/ui gratis en vez de copiar sus bloques reales (la licencia no lo permite fuera de un proyecto propio).",
+  },
 };
 
 /** Instrucción completa para pegar en Lovable, v0, Cursor o Claude Code */

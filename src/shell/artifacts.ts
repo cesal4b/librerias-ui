@@ -94,4 +94,12 @@ export const artifactCompat: Record<string, { level: ArtifactLevel; why: string 
     level: "Sí",
     why: "Es HTML y Tailwind puro, sin JavaScript: de las más fáciles de pegar casi literal en un Artifact con el Play CDN. Eso sí, como ya advierte su ficha, no trae el menú móvil con JS: hay que armarlo aparte.",
   },
+  launchui: {
+    level: "Parcial",
+    why: "Radix UI (JS puro, cargable vía `+esm` de jsdelivr) sobre Tailwind v4 compilado por Vite: misma situación que shadcn/ui, se recrea a mano con el Play CDN, no es una instalación real.",
+  },
+  shadcnstudio: {
+    level: "Parcial",
+    why: "Es shadcn/ui + Tailwind por debajo, así que el estilo se recrea a mano con el Play CDN, igual que shadcn/ui. El contenido real (bloques, temas) tiene licencia Commons Clause que prohíbe redistribuirlo de todas formas.",
+  },
 };
