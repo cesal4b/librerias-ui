@@ -53,4 +53,28 @@ export const combos: Combo[] = [
     prompt:
       "Arma la landing combinando bloques de ShadcnBlocks, Smooth UI, Kibo UI y Magic UI (todas sobre el mismo tema shadcn, para que no choquen los colores): elige un hero, un bloque de features, uno de cards y uno de galería, cada uno de una librería distinta si quieres variedad, o de la misma si prefieres consistencia. No mezcles con librerías que traigan su propio reset de CSS (Mantine, MUI, daisyUI, HeroUI, Flowbite): esas sí pueden chocar con las demás.",
   },
+  {
+    id: "combo-daisyui-autoanimate",
+    name: "daisyUI + Auto-Animate",
+    framework: "daisyui",
+    interaction: { name: "Auto-Animate (@formkit/auto-animate)", url: "https://auto-animate.formkit.com", price: "Gratis" },
+    description:
+      "daisyUI con el tema «retro» y Auto-Animate en features, cards y galería: un filtro por categoría en features, un botón «Más popular primero» en cards y un botón «Mezclar orden» en la galería, los tres reordenan sus tarjetas con una transición automática. No se escribió ninguna animación: Auto-Animate observa el contenedor y anima solo lo que cambia.",
+    why: "Es el extremo opuesto a GSAP/Motion en esta lista: cero configuración, cero curvas de animación que decidir. Sirve para mostrar que hasta la librería más simple de la galería (solo clases CSS) puede verse pulida con el mínimo esfuerzo posible.",
+    install: "npm i -D daisyui  →  npm i @formkit/auto-animate",
+    prompt:
+      "Usa daisyUI 5 (tema «retro» u otro con personalidad) para toda la UI. Para cualquier lista que el usuario pueda filtrar, reordenar o mezclar (features, cards, galería), envuelve el contenedor con el hook `useAutoAnimate` de `@formkit/auto-animate/react` y usa el ref que devuelve en el elemento padre: no hace falta escribir ninguna animación a mano, Auto-Animate detecta los cambios solo.",
+  },
+  {
+    id: "combo-mantine-motion",
+    name: "Mantine + Motion",
+    framework: "mantine",
+    interaction: { name: "Motion (antes Framer Motion)", url: "https://motion.dev", price: "Gratis" },
+    description:
+      "Los bloques oficiales de ui.mantine.dev (HeroBullets, FeaturesGrid, ArticleCard, CardsCarousel) con Motion encima: el hero entra con una escala suave, las features se deslizan hacia arriba al hacer scroll, y cada card se anima por separado (stagger + hover-lift). Mantine no usa Tailwind, así que es la prueba de que Motion funciona igual de bien sobre cualquier sistema de estilos.",
+    why: "Mantine es de las librerías menos vistas en sitios hechos con IA (no usa Tailwind, así que los modelos tienden a ignorarla salvo que se las pidas explícitamente). Combinada con movimiento, es de las que más se aleja del look «vibecodeado» por defecto.",
+    install: "npm i @mantine/core @mantine/hooks @mantine/carousel  →  npm i motion",
+    prompt:
+      "Usa Mantine v9 (no Tailwind) con sus bloques gratuitos de ui.mantine.dev como base. Para el movimiento, envuelve cada bloque en un `motion.div` de Motion (`import { motion } from \"motion/react\"`): nunca apliques `whileHover`/`whileInView` directo sobre los botones o inputs internos de Mantine, siempre sobre tu propio div envolvente. Evita animar la propiedad `clipPath` con `whileInView`: en pruebas no disparaba la animación de forma confiable; usa `opacity`/`y` en su lugar.",
+  },
 ];

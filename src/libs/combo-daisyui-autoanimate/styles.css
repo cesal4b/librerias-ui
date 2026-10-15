@@ -1,0 +1,6 @@
+@import "tailwindcss" source(none);
+@source "./";
+/* Tema fijo "retro" (el que recomienda la ficha de daisyUI para darle personalidad propia). */
+@plugin "daisyui" {
+  themes: retro --default;
+}
