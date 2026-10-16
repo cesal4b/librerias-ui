@@ -1,0 +1,8 @@
+/* Este combo reutiliza los componentes reales de Flowbite (flowbite-react): hay que escanear
+   también su paquete para que Tailwind genere sus clases, igual que en src/libs/flowbite. */
+@import "tailwindcss" source(none);
+@source "./";
+@source "../../../node_modules/flowbite-react/dist";
+@plugin "flowbite-react/plugin/tailwindcss";
+/* Modo oscuro solo con la clase .dark (por defecto Flowbite sigue al sistema y mezclaría claro/oscuro) */
+@custom-variant dark (&:where(.dark, .dark *));

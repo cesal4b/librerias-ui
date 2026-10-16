@@ -1,0 +1,6 @@
+/* Este combo reutiliza los componentes reales de HeroUI v3 (src/libs/heroui): hay que importar
+   su hoja de estilos y escanear también esa carpeta para que Tailwind genere sus clases. */
+@import "tailwindcss" source(none);
+@source "./";
+@source "../heroui";
+@import "@heroui/styles";

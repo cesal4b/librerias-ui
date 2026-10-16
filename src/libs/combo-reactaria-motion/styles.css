@@ -1,0 +1,15 @@
+/* Este combo reutiliza los componentes reales de React Aria (src/libs/react-aria/ui):
+   hay que escanear también esa carpeta para que Tailwind genere sus clases. */
+@import "tailwindcss" source(none);
+@import "tw-animate-css";
+@source "./";
+@source "../react-aria";
+/* Variantes como pressed:, selected:, focus-visible: para los estados de React Aria */
+@plugin "tailwindcss-react-aria-components";
+/* Modo oscuro solo con la clase .dark (los componentes de arranque siguen al sistema por defecto) */
+@custom-variant dark (&:where(.dark, .dark *));
+/* El indicador de pestañas usa mix-blend-difference: necesita un fondo opaco detrás */
+body {
+  background: white;
+  color: var(--color-neutral-900);
+}

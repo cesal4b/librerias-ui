@@ -1,0 +1,11 @@
+/* Este combo reutiliza los componentes reales de Base UI (src/libs/baseui):
+   hay que escanear también esa carpeta para que Tailwind genere sus clases. */
+@import "tailwindcss" source(none);
+@source "./";
+@source "../baseui";
+/* Las demos oficiales usan dark: según el sistema; aquí se fija claro para que la página sea coherente */
+@custom-variant dark (&:where(.dark, .dark *));
+body {
+  background: white;
+  color: var(--color-neutral-950);
+}
